@@ -2,21 +2,29 @@ import { Link } from "react-router-dom";
 import * as client from "./client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./reducer";
 
 
 function Login() {
   const [error, setError] = useState("");
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+
   const signin = async () => {
     console.log(credentials);
-    await client.signin(credentials);
+    const user = await client.signin(credentials);
+    dispatch(setCurrentUser(user));
     navigate("/profile"); //could go to profile - id ?
   };
   const signup = async () => {
     try {
       console.log(credentials);
-      await client.signup(credentials);
+      const user = await client.signup(credentials);
+      dispatch(setCurrentUser(user));
       navigate("/profile"); // could navigate to profile-id as well
     } catch (err) {
       setError(err.response.data.message);
@@ -27,7 +35,8 @@ function Login() {
     try {
       console.log(credentials);
       credentials.role = 'JOB-POSTER';
-      await client.signup(credentials);
+      const user = await client.signup(credentials);
+      dispatch(setCurrentUser(user));
       navigate("/profile"); // could navigate to profile-id as well
     } catch (err) {
       setError(err.response.data.message);

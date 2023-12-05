@@ -65,19 +65,26 @@ function Login() {
       <button onClick={signin}> Signin </button> */}
       <form class="">
       <div class="form-group pt-3 form-control-sm col-md-6">
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username"/>
+          <input placeholder="Username" class="form-control" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})} />
       </div>
       <div class=" form-group pt-3  form-control-sm col-md-6 pt-2">
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        <input class="form-control" placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})} />
       </div>
       <div class="col-md-6 pt-3">
       <Link to="/register"><small id="emailHelp" class="form-text text-muted">Not a User? Register Here</small></Link>
       </div>
       <div class="col-md-6 pt-3">
-       <Link to="/home"><button type="submit" class="btn btn-primary ">Sign in</button></Link>
+       <Link to="/home"><button onClick={signin} type="submit" class="btn btn-primary ">Sign in</button></Link>
       </div>
     </form>
-      
+    {/* <input placeholder="Username" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
+      <br/>
+      <input placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>
+      <br/>
+      <button onClick={signin}> Sign in </button> */}
+      <button onClick={signup}> Sign up </button>
+      <h3>To Post Positions...</h3>
+      <button onClick={signupAsBusiness}> Sign up as Business</button>
       {/* <input placeholder="Username" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
       <br/>
       <input placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>

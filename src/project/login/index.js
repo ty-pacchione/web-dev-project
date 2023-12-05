@@ -13,21 +13,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //   };
 //   return (
 //     <div>
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./reducer";
 
 
 function Login() {
   const [error, setError] = useState("");
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+
+
   const signin = async () => {
     console.log(credentials);
-    await client.signin(credentials);
+    const user = await client.signin(credentials);
+    dispatch(setCurrentUser(user));
     navigate("/profile"); //could go to profile - id ?
   };
   const signup = async () => {
     try {
       console.log(credentials);
-      await client.signup(credentials);
+      const user = await client.signup(credentials);
+      dispatch(setCurrentUser(user));
       navigate("/profile"); // could navigate to profile-id as well
     } catch (err) {
       setError(err.response.data.message);
@@ -38,7 +46,8 @@ function Login() {
     try {
       console.log(credentials);
       credentials.role = 'JOB-POSTER';
-      await client.signup(credentials);
+      const user = await client.signup(credentials);
+      dispatch(setCurrentUser(user));
       navigate("/profile"); // could navigate to profile-id as well
     } catch (err) {
       setError(err.response.data.message);
@@ -49,6 +58,7 @@ function Login() {
   return (
     <div>
       <h1>Login</h1>
+      {error && <div>{error}</div>}
       {/* <input value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
       <br/>
       <input value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>
@@ -67,8 +77,8 @@ function Login() {
        <Link to="/home"><button type="submit" class="btn btn-primary ">Sign in</button></Link>
       </div>
     </form>
-      {error && <div>{error}</div>}
-      <input placeholder="Username" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
+      
+      {/* <input placeholder="Username" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
       <br/>
       <input placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>
       <br/>
@@ -79,7 +89,7 @@ function Login() {
       <br/>
       <br/>
       <Link to="/home">Home screen</Link><br/>
-      <Link to="http://localhost:4000">Server</Link>
+      <Link to="http://localhost:4000">Server</Link> */}
     </div>
   )
 }

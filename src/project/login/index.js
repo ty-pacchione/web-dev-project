@@ -77,26 +77,6 @@ function Login() {
        <Link to="/home"><button onClick={signin} type="submit" class="btn btn-primary ">Sign in</button></Link>
       </div>
     </form>
-    {/* <input placeholder="Username" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
-      <br/>
-      <input placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>
-      <br/>
-      <button onClick={signin}> Sign in </button> */}
-      <button onClick={signup}> Sign up </button>
-      <h3>To Post Positions...</h3>
-      <button onClick={signupAsBusiness}> Sign up as Business</button>
-      {/* <input placeholder="Username" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
-      <br/>
-      <input placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>
-      <br/>
-      <button onClick={signin}> Sign in </button>
-      <button onClick={signup}> Sign up </button>
-      <h3>To Post Positions...</h3>
-      <button onClick={signupAsBusiness}> Sign up as Business</button>
-      <br/>
-      <br/>
-      <Link to="/home">Home screen</Link><br/>
-      <Link to="http://localhost:4000">Server</Link> */}
     </div>
   )
 }

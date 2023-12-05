@@ -1,4 +1,5 @@
 import Login from "./login";
+import Register from "./register";
 import Home from "./home";
 import Current from "./profile/current";
 import Profile from "./profile";
@@ -11,8 +12,9 @@ function Project() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="login"/>}/>
+        <Route path="/" element={<Navigate to="home"/>}/>
         <Route path="login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
         <Route path="home" element={<Home/>}/>
         <Route path="profile" element={<Current/>}/>
         <Route path="profile/:uid" element={<Profile/>}/>

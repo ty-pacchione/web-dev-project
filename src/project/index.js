@@ -5,6 +5,7 @@ import Current from "./profile/current";
 import Profile from "./profile";
 import Search from "./search";
 import Details from "./details";
+import Edit from "./profile/edit";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css"
 import store from "./store";
@@ -31,6 +32,7 @@ function Project() {
         <Route path="profile/:uid" element={<Profile/>}/>
         <Route path="search" element={<Search/>}/>
         <Route path="details/:did" element={<Details/>}/>
+        <Route path="edit" element={<Edit/>}/>
         <Route path="*" element={<div><h1>Page not found</h1></div>}/>
       </Routes>
       </CurrentUser>

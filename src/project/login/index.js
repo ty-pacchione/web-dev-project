@@ -3,16 +3,6 @@ import * as client from "./client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-  
-// function Login() {
-//   const [credentials, setCredentials] = useState({ username: "", password: "" });
-//   const navigate = useNavigate();
-//   const signin = async () => {
-//     await client.signin(credentials);
-//     navigate("/project/account");
-//   };
-//   return (
-//     <div>
 import { useDispatch } from "react-redux";
 import { setCurrentUser } from "./reducer";
 
@@ -30,28 +20,6 @@ function Login() {
     const user = await client.signin(credentials);
     dispatch(setCurrentUser(user));
     navigate("/profile"); //could go to profile - id ?
-  };
-  const signup = async () => {
-    try {
-      console.log(credentials);
-      const user = await client.signup(credentials);
-      dispatch(setCurrentUser(user));
-      navigate("/profile"); // could navigate to profile-id as well
-    } catch (err) {
-      setError(err.response.data.message);
-    }
-  };
-
-  const signupAsBusiness = async () => {
-    try {
-      console.log(credentials);
-      credentials.role = 'JOB-POSTER';
-      const user = await client.signup(credentials);
-      dispatch(setCurrentUser(user));
-      navigate("/profile"); // could navigate to profile-id as well
-    } catch (err) {
-      setError(err.response.data.message);
-    }
   };
 
 

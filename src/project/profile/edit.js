@@ -17,45 +17,76 @@ function Account() {
   };
 
   return (
-    <div className="w-50">
-      <h1>Account</h1>
-      {account && (
-        <div>
-          <label>Password: </label>
-          <input value={account.password}
-            onChange={(e) => setAccount({ ...account,
-              password: e.target.value })}/>
-              <br></br>
-          
-          <label>First Name: </label>
-          <input value={account.firstName}
-            onChange={(e) => setAccount({ ...account,
-              firstName: e.target.value })}/> <br></br>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm"></div>
+          <div class="col-sm">
+            
+          <h1 class="pt-2">Edit Your Account</h1>
+            {account && (
+             <form class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label"> Password </label>
+                <input class="form-control" value={account.password}
+                  onChange={(e) => setAccount({
+                    ...account,
+                    password: e.target.value
+                  })} />
+                <br></br>
+                </div>
+                <div class="form-group">
+                <label class="control-label">First Name </label>
+                <input class="form-control" value={account.firstName}
+                  onChange={(e) => setAccount({
+                    ...account,
+                    firstName: e.target.value
+                  })} /> <br></br>
+                </div>
+                <div class="form-group">
+                <label class="control-label">Last Name </label>
+                <input class="form-control" value={account.lastName}
+                  onChange={(e) => setAccount({
+                    ...account,
+                    lastName: e.target.value
+                  })} /> <br></br>
+                </div>
+                <div class="form-group">
+                <label class="control-label">Birthday   </label>
+                <input class="form-control" value={account.dob}
+                  onChange={(e) => setAccount({
+                    ...account,
+                    dob: e.target.value
+                  })} /><br></br>
+                </div>
+                <div class="form-group">
+                <label class="control-label">Email </label>
+                <input class="form-control" value={account.email}
+                  onChange={(e) => setAccount({
+                    ...account,
+                    email: e.target.value
+                  })} /> <br></br>
+                </div>
+                <div class="form-inline">
+                <label class="control-inline ">Bio </label>
+                <input class="form-control form-inline" value={account.bio}
+                  onChange={(e) => setAccount({
+                    ...account,
+                    bio: e.target.value
+                  })} />
+                <br></br>
+                </div>
+                
+                <Link to="/profile"><button class="btn btn-primary" onClick={save}>
+                  Save
+                </button></Link>
+                </form>
+              )}
+            </div>
+            
+            <div class="col-sm"></div>
+          </div>
+      </div>
 
-          <label>Last Name: </label>
-          <input value={account.lastName}
-            onChange={(e) => setAccount({ ...account,
-              lastName: e.target.value })}/> <br></br>
-
-          <label>Birthday:   </label>
-          <input value={account.dob}
-            onChange={(e) => setAccount({ ...account,
-              dob: e.target.value })}/><br></br>
-          <label>Email: </label>
-          <input value={account.email}
-            onChange={(e) => setAccount({ ...account,
-              email: e.target.value })}/> <br></br>
-          <label>Bio: </label>
-          <input value={account.bio}
-            onChange={(e) => setAccount({ ...account,
-              bio: e.target.value })}/>
-              <br></br>
-          <Link to="/profile"><button onClick={save}>
-            Save
-          </button></Link>
-        </div>
-      )}
-    </div>
   );
 }
 export default Account;

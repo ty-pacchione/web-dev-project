@@ -23,28 +23,39 @@ function Login() {
   };
 
 
+
   return (
     <div>
-      <h1>Login</h1>
+      
       {error && <div>{error}</div>}
-      {/* <input value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})}/>
-      <br/>
-      <input value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})}/>
-      <button onClick={signin}> Signin </button> */}
-      <form class="">
-      <div class="form-group pt-3 form-control-sm col-md-6">
-          <input placeholder="Username" class="form-control" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})} />
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+
+          </div>
+          <div class="col-sm">
+          <h1 class="pt-2">Login</h1>
+          <form class="">
+            <div class="form-group pt-2 form-control-sm">
+                <input placeholder="Username" class="form-control" value={credentials.username} onChange={(e) => setCredentials({...credentials, username: e.target.value})} />
+            </div>
+            <div class=" form-group pt-3  form-control-sm pt-2">
+              <input class="form-control" placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})} />
+            </div>
+            <div class="pt-3">
+              <Link to="/register"><small id="emailHelp" class="form-text text-muted">Not a User? Register Here</small></Link>
+            </div>
+            <div class="pt-3">
+              <Link to="/home"><button onClick={signin} type="submit" class="btn btn-primary ">Sign in</button></Link>
+            </div>
+          </form>
+          </div>
+          <div class="col-sm">
+
+          </div>
+        </div>
       </div>
-      <div class=" form-group pt-3  form-control-sm col-md-6 pt-2">
-        <input class="form-control" placeholder="Password" type="password" value={credentials.password} onChange={(e) => setCredentials({...credentials, password: e.target.value})} />
-      </div>
-      <div class="col-md-6 pt-3">
-      <Link to="/register"><small id="emailHelp" class="form-text text-muted">Not a User? Register Here</small></Link>
-      </div>
-      <div class="col-md-6 pt-3">
-       <Link to="/home"><button onClick={signin} type="submit" class="btn btn-primary ">Sign in</button></Link>
-      </div>
-    </form>
+      
     </div>
   )
 }

@@ -62,7 +62,7 @@ function Current() {
       <br></br>
     </div>
     <div class="col-sm">
-    {account && (<h3>{account.username}</h3>)}
+    {account && (<h3 class="pb-2">{account.username}</h3>)}
     <div class="clearfix">
       <div class="float-start">Followers: 0</div>
       <div class="float-end">Following: 0</div>
@@ -70,7 +70,7 @@ function Current() {
     </div>
     {account && (<p>Bio: {account.bio}</p>)}
   
-    {account &&  (<Link to="/edit"> <button class="btn btn-primary">Edit</button></Link>)}
+    {account &&  (<Link to="/edit"> <button class="btn btn-primary me-2 px-4">Edit</button></Link>)}
       {account && (<Link onClick={signout}><button class="btn btn-primary"> Sign Out</button></Link> )}
       
     </div>

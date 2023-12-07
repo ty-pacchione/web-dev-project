@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import * as client from "./client";
+import * as client from "../login/client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';

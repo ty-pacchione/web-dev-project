@@ -52,3 +52,10 @@ export const signout = async () => {
   const response = await request.post(`${USERS_API}/signout`);
   return response.data;
 };
+
+
+export const bio = async (credentials) => {
+    const response = await request.post(
+      `${USERS_API}/bio`, credentials.bio);
+    return response.data;
+  };

@@ -1,4 +1,4 @@
-import * as client from "./client";
+import * as client from "../login/client";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";

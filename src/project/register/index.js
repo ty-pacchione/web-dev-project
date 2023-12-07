@@ -84,7 +84,7 @@ function Register() {
       <div className="container">
 </div>
       <div className="pt-2">
-        <label for="exampleInputEmail1">Which account type do you want?</label>
+        <label>Which account type do you want?</label>
         <br/>
         <div className="form-check form-check-inline pt-2">
             <input className="form-check-input" type="radio" name="role" id="inlineCheckbox1" />

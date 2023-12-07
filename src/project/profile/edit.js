@@ -2,88 +2,105 @@ import * as client from "../login/client";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "../login/reducer";
 function Account() {
-  const [account, setAccount] = useState(null);
+  
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.usersReducer);
+  const [editAccount, setEditAccount] = useState(currentUser);
+
+
+  
   const fetchAccount = async () => {
     const account = await client.account();
-    setAccount(account);
+    dispatch(setCurrentUser(account));
   };
+
+  const updateAccount = async (acc) => {
+    const account = await client.updateUser(acc);
+    dispatch(setCurrentUser(account));
+  };
+
+
   useEffect(() => {
     fetchAccount();
   }, []);
+
+
   const save = async () => {
-    await client.updateUser(account);
+    updateAccount(editAccount);
   };
 
   return (
-      <div class="container">
-        <div class="row">
-          <div class="col-sm"></div>
-          <div class="col-sm">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm"></div>
+          <div className="col-sm">
             
-          <h1 class="pt-2">Edit Your Account</h1>
-            {account && (
-             <form class="form-horizontal">
-              <div class="form-group">
-                <label class="control-label"> Password </label>
-                <input class="form-control" value={account.password}
-                  onChange={(e) => setAccount({
-                    ...account,
+          <h1 className="pt-2">Edit Your Account</h1>
+            {currentUser && (
+             <form className="form-horizontal">
+              <div className="form-group">
+                <label className="control-label"> Password </label>
+                <input className="form-control" value={editAccount.password}
+                  onChange={(e) => setEditAccount({
+                    ...editAccount,
                     password: e.target.value
                   })} />
                 <br></br>
                 </div>
-                <div class="form-group">
-                <label class="control-label">First Name </label>
-                <input class="form-control" value={account.firstName}
-                  onChange={(e) => setAccount({
-                    ...account,
+                <div className="form-group">
+                <label className="control-label">First Name </label>
+                <input className="form-control" value={editAccount.firstName}
+                  onChange={(e) => setEditAccount({
+                    ...editAccount,
                     firstName: e.target.value
                   })} /> <br></br>
                 </div>
-                <div class="form-group">
-                <label class="control-label">Last Name </label>
-                <input class="form-control" value={account.lastName}
-                  onChange={(e) => setAccount({
-                    ...account,
+                <div className="form-group">
+                <label className="control-label">Last Name </label>
+                <input className="form-control" value={editAccount.lastName}
+                  onChange={(e) => setEditAccount({
+                    ...editAccount,
                     lastName: e.target.value
                   })} /> <br></br>
                 </div>
-                <div class="form-group">
-                <label class="control-label">Birthday   </label>
-                <input class="form-control" value={account.dob}
-                  onChange={(e) => setAccount({
-                    ...account,
+                <div className="form-group">
+                <label className="control-label">Birthday   </label>
+                <input className="form-control" value={editAccount.dob}
+                  onChange={(e) => setEditAccount({
+                    ...editAccount,
                     dob: e.target.value
                   })} /><br></br>
                 </div>
-                <div class="form-group">
-                <label class="control-label">Email </label>
-                <input class="form-control" value={account.email}
-                  onChange={(e) => setAccount({
-                    ...account,
+                <div className="form-group">
+                <label className="control-label">Email </label>
+                <input className="form-control" value={editAccount.email}
+                  onChange={(e) => setEditAccount({
+                    ...editAccount,
                     email: e.target.value
                   })} /> <br></br>
                 </div>
-                <div class="form-inline">
-                <label class="control-inline ">Bio </label>
-                <input class="form-control form-inline" value={account.bio}
-                  onChange={(e) => setAccount({
-                    ...account,
+                <div className="form-inline">
+                <label className="control-inline ">Bio </label>
+                <input className="form-control form-inline" value={editAccount.bio}
+                  onChange={(e) => setEditAccount({
+                    ...editAccount,
                     bio: e.target.value
                   })} />
                 <br></br>
                 </div>
                 
-                <Link to="/profile"><button class="btn btn-primary" onClick={save}>
+                <Link to="/profile"><button className="btn btn-primary" onClick={save}>
                   Save
                 </button></Link>
                 </form>
               )}
             </div>
             
-            <div class="col-sm"></div>
+            <div className="col-sm"></div>
           </div>
       </div>
 

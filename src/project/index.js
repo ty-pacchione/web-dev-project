@@ -33,6 +33,7 @@ function Project() {
         <Route path="search" element={<Search/>}/>
         <Route path="details/:did" element={<Details/>}/>
         <Route path="edit" element={<Edit/>}/>
+        {/* <Route path="test" element={<Edit/>}/> */}
         <Route path="*" element={<div><h1>Page not found</h1></div>}/>
       </Routes>
       </CurrentUser>

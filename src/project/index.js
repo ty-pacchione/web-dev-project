@@ -14,6 +14,9 @@ import CurrentUser from "./login/currentUser";
 import Nav from "./navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProtectedUserRoute from "./login/protectedUserRoute";
+import JSearchSearch from "./search/JSearchSearch";
+import CreateJob from "./jobs/CreateJob";
+import ProtectedJobPosterRoute from "./login/protectedJobPosterRoute";
 
 function Project() {
   return (
@@ -30,9 +33,12 @@ function Project() {
                                           <Current/>
                                         </ProtectedUserRoute>}/>
         <Route path="profile/:uid" element={<Profile/>}/>
-        <Route path="search" element={<Search/>}/>
+        <Route path="search" element={<JSearchSearch/>}/>
         <Route path="details/:did" element={<Details/>}/>
         <Route path="edit" element={<Edit/>}/>
+        <Route path="createJob" element={<ProtectedJobPosterRoute>
+                                            <CreateJob/>
+                                          </ProtectedJobPosterRoute>}/>
         <Route path="*" element={<div><h1>Page not found</h1></div>}/>
       </Routes>
       </CurrentUser>

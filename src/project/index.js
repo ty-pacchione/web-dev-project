@@ -17,6 +17,7 @@ import ProtectedUserRoute from "./login/protectedUserRoute";
 import JSearchSearch from "./search/JSearchSearch";
 import CreateJob from "./jobs/CreateJob";
 import ProtectedJobPosterRoute from "./login/protectedJobPosterRoute";
+import EditJob from "./jobs/EditJob";
 
 function Project() {
   return (
@@ -35,6 +36,9 @@ function Project() {
         <Route path="profile/:uid" element={<Profile/>}/>
         <Route path="search" element={<JSearchSearch/>}/>
         <Route path="details/:did" element={<Details/>}/>
+        <Route path="/editJob/:jobID" element={<ProtectedJobPosterRoute>
+                                            <EditJob/>
+                                          </ProtectedJobPosterRoute>}/>
         <Route path="edit" element={<Edit/>}/>
         <Route path="createJob" element={<ProtectedJobPosterRoute>
                                             <CreateJob/>

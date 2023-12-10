@@ -16,7 +16,7 @@ function Details() {
   const [job, setJob] = useState();
   const [bookmarked, setBookmarked] = useState();
   const [numBookmarked, setNumBookmarked] = useState(0);
-
+  const [jobBookmarkList, setJobBookmarkList] = useState([]);
   const populateJob = async () => {
     var job = await jobclient.findJobById(did);
     //CHECK IF IS JOB? NULL IF NOT
@@ -42,6 +42,7 @@ function Details() {
     const bookmarks = await bookmarkclient.findBookmarksByJob(did);
     console.log(bookmarks);
     setNumBookmarked(bookmarks.length);
+    setJobBookmarkList(bookmarks);
 
   }
 
@@ -116,7 +117,17 @@ function Details() {
   height: 'auto'}} src={job.employer_logo} />}
           <h3>{job.job_title}</h3>
           <h3>Number of Bookmarks: {numBookmarked}</h3>
+          <div>Bookmarked by:</div>
+          <div>
+          {jobBookmarkList.map((bookmark) => (
           
+          <div key={bookmark._id} className="list-group-item list-group-item-secondary" style={{marginBottom:'5px'}}>
+              <Link style={{ textDecoration: 'none', color: 'red' }} to={`/profile/${bookmark.user_id}`}>
+                <div>User ID: {bookmark.user_id}</div>
+              </Link>
+
+          </div>))}
+          </div>
           <p>{job.job_description}</p>
 
           <h3 >{job.job_city} {job.job_state} {job.job_country}</h3>

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../login/reducer";
+import * as followsClient from "../follows/client";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -13,7 +14,8 @@ function Current() {
 
   //const { id } = useParams();
 
-
+  const [following, setFollowing] = useState([]);
+  const [followers, setFollowers] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.usersReducer);
@@ -27,10 +29,6 @@ function Current() {
     dispatch(setCurrentUser(account));
   };
 
-  // const findUserById = async (id) => {
-  //   const user = await userclient.findUserById(id);
-  //   dispatch(setCurrentUser(user));
-  // };
 
   const signout = async () => {
     await userclient.signout();
@@ -50,7 +48,19 @@ function Current() {
     setJobsBookmarked(bookmarks);
     console.log(currentUser._id);
   }
+  // const allUsers = async() => {
+  //   const users = await userclient.findAllUsers();
+  // }
 
+  const fetchFollowing = async (id) => {
+    const following = await followsClient.findUsersFollowedByUser(id);
+    setFollowing(following);
+  };
+
+  const fetchFollowers = async (id) => {
+    const followers = await followsClient.findUsersFollowingUser(id);
+    setFollowers(followers);
+  };
   //use effect
 
   useEffect(() => {
@@ -58,96 +68,114 @@ function Current() {
       fetchAccount();
       if (currentUser && currentUser.role === 'JOB-POSTER') {
         fetchJobsByLocalId();
+        fetchFollowing(currentUser._id);
+        fetchFollowers(currentUser._id);
       }
       if (currentUser && currentUser.role === 'JOB-SEEKING') {
         fetchBookmarksByUser();
+        fetchFollowing(currentUser._id);
+        fetchFollowers(currentUser._id);
       }
-    }, []);
+      
+    }, [currentUser._id]);
 
 
-
+    //console.log("followers" + followers.follows.follower.username);
   return (
     <div>
   <br></br>
   <div className="container">
   <div className="row">
     <div className="col-sm">
-      <h4>Your Comments</h4>
+      <h4>Following</h4>
+      <div className="list-group">
+
+{following.map((follows) => (
+          <Link
+            key={follows.followed._id}
+            className="list-group-item border-0 border-bottom rounded-0"
+            to={`/profile/${follows.followed._id}`}
+          >
+            @{follows.followed.username}
+          </Link>
+          
+        ))}
+            </div>
       <br></br>
     </div>
     <div className="col-sm">
     {currentUser && (<h3 className="pb-2">{currentUser.username}</h3>)}
     <div className="clearfix">
-      <div className="float-start">Followers: 0</div>
-      <div className="float-end">Following: 0</div>
+      <div className="float-start">Following: {following.length}</div>
+      <div className="float-end">Followers: {followers.length}</div>
       {currentUser && (<p>{currentUser.role}</p>)}
     </div>
     {currentUser && (<p>Bio: {currentUser.bio}</p>)}
   
     {currentUser &&  (<Link to="/edit"> <button className="btn btn-primary me-2 px-4">Edit</button></Link>)}
       {currentUser && (<Link onClick={signout}><button className="btn btn-primary"> Sign Out</button></Link> )}
-      
-    </div>
-    <div className="col-sm">
-      <div className="row">
-        {currentUser && currentUser.role === 'JOB-SEEKING' && 
+      <br></br>
+      <br></br>
+
+          {currentUser && currentUser.role === 'JOB-SEEKING' && 
         <div>
           <h4>Jobs Bookmarked</h4>
-
+        
           {jobsBookmarked && jobsBookmarked.map((bookmark) => (
           
-          <div key={bookmark._id} className="list-group-item list-group-item-secondary" style={{marginBottom:'5px'}}>
-              <Link style={{ textDecoration: 'none', color: 'red' }} to={`/details/${bookmark.job_id}`}>
+          <div key={bookmark._id} className="list-group-item border-0 border-bottom border-top" style={{marginBottom:'5px'}}>
+              <Link style={{ textDecoration: 'none' }} to={`/details/${bookmark.job_id}`}>
                 <div>Job ID: {bookmark.job_id}</div>
               </Link>
 
           </div>))}
-
-
-
-
         </div>}
+
         {currentUser && currentUser.role === 'JOB-POSTER' && 
         <div>
           <h4>Jobs Created</h4>
+          {currentUser && currentUser.role === 'JOB-POSTER' && 
+        <Link to="/createJob"><button className="btn btn-success" type="button">Create New Job</button></Link>}
+        <br></br>
+        <br></br>
           {jobsCreated && jobsCreated.map((job) => (
           
-          <div key={job.job_id} className="list-group-item list-group-item-secondary">
+          <div key={job.job_id} className="list-group-item border rounded">
               <Link style={{ textDecoration: 'none', color: 'black' }} to={`/details/${job.job_id}`}>
-                <h2>{job.employer_name}</h2>
-                <div>
-                  {job.employer_logo && <img className="float-start" style={{width: '150px',
-                                                                            height: 'auto'}} src={job.employer_logo} />}
-                  <h3 className="float-start">{job.job_title}</h3>
-                  
-                  <div className="float-end">{job.job_id}</div>
-
-                  <h3 className="float-end">{job.job_city}</h3>
-                  <h3 className="float-end">{job.job_state}</h3>
-                  <h3 className="float-end">{job.job_country}</h3>
-                </div>
+      
+                  {/* {job.employer_logo && <img className="float-start" style={{width: '150px',
+                                                                            height: 'auto'}} src={job.employer_logo} />} */}
+                  <h3>{job.job_title}</h3>
+                  <p>{job.job_description}</p>                                           
+                  <p>{job.job_city}, {job.job_state}, {job.job_country}</p>
               </Link>
 
           </div>))}
         
         </div>}
 
+     
+      
+      
+    </div>
+    <div className="col-sm">
 
+        <h4>Followers</h4>
+        {currentUser &&  
+      <div className="list-group">
+     
+{followers.map((follows) => (
+          <Link
+            key={follows.follower._id}
+            className="list-group-item border-0 border-bottom rounded-0"
+            to={`/profile/${follows.follower._id}`}
+          >
+            @{follows.follower.username}
+          </Link>
+          
+        ))}
 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        {currentUser && currentUser.role === 'JOB-POSTER' && 
-        <Link to="/createJob"><button className="btn btn-success" type="button">Create New Job</button></Link>}
-        <br/>
-        <br/>
-        </div>
-        <div className="row">
-          <h4>Jobs You Applied For</h4>
-        </div>
+        </div> }
     </div>
   </div>
 </div>

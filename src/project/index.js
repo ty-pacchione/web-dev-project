@@ -43,6 +43,7 @@ function Project() {
         <Route path="createJob" element={<ProtectedJobPosterRoute>
                                             <CreateJob/>
                                           </ProtectedJobPosterRoute>}/>
+
         <Route path="*" element={<div><h1>Page not found</h1></div>}/>
       </Routes>
       </CurrentUser>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const KEY = 'ffac3032b7mshf737a6380694e0bp1194f0jsnb73f2b71b6ab';
+const KEY = '0e1d6916c9msh1a4e9c7c8961c71p17dd25jsn8688d986a922';
 const JSearch_API = "https://jsearch.p.rapidapi.com";
 
 

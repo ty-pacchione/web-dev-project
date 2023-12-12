@@ -62,8 +62,8 @@ function Home() {
         <div className="d-flex flex-row flex-wrap justify-content-center" style={{margin: '30px'}}>
         {jobsCreated && jobsCreated.map((job) => (
           
-          <div key={job.job_id} className="card" style={{"width": "250px", "margin-bottom": "30px",
-           "margin-right": "30px", 'background-color': 'lightcyan'}}>
+          <div key={job.job_id} className="card" style={{"width": "250px", "marginBottom": "30px",
+           "marginRight": "30px", 'backgroundColor': 'lightcyan'}}>
             <div className="card-body" >
               <Link style={{ textDecoration: 'none', color: 'black' }} to={`/details/${job.job_id}`}>
                 <h3 style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif'}}>{job.employer_name}</h3>
@@ -111,8 +111,8 @@ function Home() {
 
         {anonJobs && anonJobs.map((job) => (
           
-          <div key={job.job_id} className="card" style={{"width": "250px", "margin-bottom": "30px",
-           "margin-right": "30px", 'background-color': 'lightgrey'}}>
+          <div key={job.job_id} className="card" style={{"width": "250px", "marginBottom": "30px",
+           "marginRight": "30px", 'backgroundColor': 'lightgrey'}}>
             <div className="card-body" >
               <Link style={{ textDecoration: 'none', color: 'black' }} to={`/details/${job.job_id}`}>
                 <h3 style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif'}}>{job.employer_name}</h3>

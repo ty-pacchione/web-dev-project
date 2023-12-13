@@ -125,7 +125,7 @@ function Details() {
                 }
               </div>
               <h5>{job.job_city}, {job.job_state}, {job.job_country} <FaMapMarkerAlt style={{ color: 'red' }} /></h5>
-              <div style={{ backgroundColor: "lightgray", borderStyle: "solid", borderColor: "gray", borderRadius: "5px", float: "left", width: "100%" }}>
+              <div style={{ marginTop: '5px', backgroundColor: "lightgray", borderStyle: "solid", borderColor: "gray", borderRadius: "5px", float: "left", width: "100%" }}>
                 <h6 style={{ margin: '8px' }}>Description</h6>
                 <hr style={{ margin: '0px' }} />
                 <p style={{ margin: '12px', textAlign: 'left' }}>

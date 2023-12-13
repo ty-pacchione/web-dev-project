@@ -32,6 +32,9 @@ function Profile() {
   };
 
   const alreadyFollowing = () => {
+    if (!currentUser) {
+      return false;
+    }
     return followers.find(
       (follows) => follows.follower._id === currentUser._id
     );
@@ -108,8 +111,8 @@ function Profile() {
         {user && (<p>{user.role}</p>)}
       </div>
       {user && (<p>Bio: {user.bio}</p>)}
-      {currentUser?._id !== uid && (
-        <>
+      {currentUser && currentUser._id !== uid && (
+        <> 
         
           {alreadyFollowing() ? (
             <button onClick={reloadAfterUnFollow} className="btn btn-danger">Unfollow</button>

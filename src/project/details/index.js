@@ -102,7 +102,7 @@ function Details() {
           <Link style={{ textDecoration: 'none', color: 'red' }} to={`/profile/${job.local_poster_id}`}>Job Poster: {job.local_poster_username}</Link>
           }
           <br/>
-          {job.local_poster_id && job.local_poster_username && job.local_poster_id === currentUser._id && 
+          {job.local_poster_id && currentUser && job.local_poster_username && job.local_poster_id === currentUser._id && 
           <Link to={`/editJob/${job.job_id}`}><button type="button" className="btn btn-warning">Edit this Posting</button></Link>
           }
           {currentUser && currentUser.role && currentUser.role === 'JOB-SEEKING' &&

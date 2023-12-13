@@ -118,7 +118,7 @@ function Details() {
                 }
               </div>
               <div style={{ margin: '10px' }}>
-                {job.local_poster_id && job.local_poster_username && job.local_poster_id === currentUser._id &&
+                {job.local_poster_id && currentUser && job.local_poster_username && job.local_poster_id === currentUser._id &&
                   <Link to={`/editJob/${job.job_id}`} style={{ textDecoration: 'none', color: 'red' }}>
                     Edit This Posting
                   </Link>

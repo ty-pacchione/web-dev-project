@@ -54,11 +54,12 @@ function Home() {
 
   return (
     <div>
-      <h1 style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif', marginTop: '20px'}}>JobSearch! </h1>
+      <h1 style={{ fontFamily: 'Georgia, sans-serif', marginTop: '20px', textDecoration: 'underline'}}>JobSearch! </h1>
+      <p style={{fontFamily: 'Georgia, sans-serif'}}>Find the job of your dreams or find the right person for your company!</p>
       <br/>
       {currentUser && currentUser.role === 'JOB-POSTER' && 
       <div>
-        <h3 style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif'}}>Jobs You've Posted:</h3>
+        <h3 style={{ fontFamily: 'Georgia, sans-serif'}}>Jobs You've Posted:</h3>
         <div className="d-flex flex-row flex-wrap justify-content-center" style={{margin: '30px'}}>
         {jobsCreated && jobsCreated.map((job) => (
           
@@ -85,8 +86,8 @@ function Home() {
 
       {currentUser && currentUser.role === 'JOB-SEEKING' &&
       <div>
-        <h3 style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif'}}>Jobs You've Bookmarked:</h3>
-        <div style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif'}}>Click Bookmark to Jump to Job Details!</div>
+        <h3 style={{ fontFamily: 'Georgia, sans-serif'}}>Jobs You've Bookmarked:</h3>
+        <div style={{ fontFamily: 'Georgia, sans-serif'}}>Click Bookmark to Jump to Job Details!</div>
         <div className="list-group w-50" style={{margin: 'auto'}}>
           {jobsBookmarked && jobsBookmarked.map((bookmark) => (
           
@@ -106,7 +107,7 @@ function Home() {
       {
       
       <div>
-        <h3 style={{ fontFamily: 'Verdana, Geneva, Tahoma, sans-serif'}}>Recently Created Jobs:</h3>
+        <h3 style={{ fontFamily: 'Georgia, sans-serif'}}>Recently Created Jobs:</h3>
         <div className="d-flex flex-row flex-wrap justify-content-center" style={{margin: '30px'}}>
 
         {anonJobs && anonJobs.map((job) => (

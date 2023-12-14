@@ -46,7 +46,7 @@ function Login() {
               <Link to="/register"><small id="emailHelp" className="form-text text-muted">Not a User? Register Here</small></Link>
             </div>
             <div className="pt-3">
-              <button onClick={signin} type="submit" className="btn btn-primary ">Sign in</button>
+              <button onClick={signin} type="button" className="btn btn-primary ">Sign in</button>
             </div>
           </form>
           </div>

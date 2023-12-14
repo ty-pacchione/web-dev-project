@@ -101,7 +101,7 @@ function Register() {
       <br/>
       </div>
       <div className="pt-2 ">
-      <Link to="/profile"><button type="submit" onClick={posterOrUser} className="btn btn-primary">Register</button></Link>
+      <Link to="/profile"><button type="button" onClick={posterOrUser} className="btn btn-primary">Register</button></Link>
       </div>
       </form>
       </div>
